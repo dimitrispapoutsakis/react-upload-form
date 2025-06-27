@@ -16,7 +16,7 @@
 			"@utils/*": ["utils/*"],
 			"@scss/*": ["assets/scss/*"],
 			"@img/*": ["assets/img/*"],
-			"@typeDefs": ["typeDefs.ts"]
+			"@typings": ["typings.ts"]
 		}
 	},
 	"include": ["src"]

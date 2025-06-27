@@ -1,1 +1,2 @@
-export { Button } from "./Button";
+export { ReactUploadForm } from "./components/ReactUploadForm";
+export * from './typings';
