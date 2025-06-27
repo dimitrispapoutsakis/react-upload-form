@@ -4,6 +4,8 @@ export interface IReactUploadForm {
     theme: TTheme;
     rounded?: boolean;
     gradientBg?: boolean;
+    gradientText?: boolean;
+    text?: string;
 }
 
 /* Theme... */

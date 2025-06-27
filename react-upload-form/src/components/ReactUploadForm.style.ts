@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { TTheme } from "@typings";
 import { isLightTheme } from "@utils/theme.util";
 import { borderRadius, darkBunker, linearGradientDark, linearGradientLight, mercury, whiteAlto } from "constants/theme";
 
-export default styled.div<{ theme: TTheme, rounded: boolean, gradientBg: boolean }>`
+export const StyledReactUploadForm = styled.div<{ theme: TTheme, rounded: boolean, gradientBg: boolean }>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,3 +16,12 @@ export default styled.div<{ theme: TTheme, rounded: boolean, gradientBg: boolean
     background-color: ${({ theme, gradientBg }) => gradientBg ? 'transparent' : (isLightTheme(theme) ? whiteAlto : darkBunker)};
     border-radius: ${({ rounded }) => (rounded ? borderRadius : '0px')};
 `;
+
+export const StyledTextGradient = css`
+    background: linear-gradient(74deg, blue 0%, red 9%, yellow 20%, blue 24%, red 35%, blue 44%, red 50%, blue 56%, red 75%, blue 100%);
+    background-image: linear-gradient(to right, #6a5acd, #ff6347);
+    -webkit-background-clip: text; /* For WebKit browsers */
+    background-clip: text;
+    color: transparent;
+   -webkit-text-fill-color: transparent; /* For WebKit browsers, often redundant with color: transparent but good for compatibility */
+`
