@@ -27,15 +27,17 @@ export default defineConfig({
 				pluginModuleFederation({
 					name: 'reactuploadform',
 					exposes: {
-						'.': './src/index.ts'
+						'.': './src/index.tsx'
 					},
 					// can not add 'remote' here, because you may build 'esm' or 'cjs' assets in one build.
 					// if you want the Rslib package use remote module, please see below.
 					shared: {
 						react: {
+							eager: true,
 							singleton: true,
 						},
 						'react-dom': {
+							eager: true,
 							singleton: true,
 						},
 					},
