@@ -6,6 +6,7 @@ export interface IReactUploadForm {
     gradientBg?: boolean;
     gradientText?: boolean;
     text?: string;
+    secondaryText?: string;
 }
 
 /* Theme... */

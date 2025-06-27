@@ -32,5 +32,11 @@ export const StyledBorderContainer = styled.div<{ theme: TTheme }>`
     border-radius: ${borderRadius};
     display: flex;
     flex-direction: column;
+    position: relative;
     align-items: center;
+    cursor: pointer;
+    transition: transform .25s ease;
+    &:hover {
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
 `
