@@ -11,7 +11,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 		rounded = true,
 		gradientBg = true,
 		gradientText = true,
-		text = 'Select file / Drag & drop'
+		text = 'Choose file / Drag & drop'
 	} = props;
 
 	return (
