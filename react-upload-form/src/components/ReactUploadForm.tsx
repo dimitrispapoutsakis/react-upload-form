@@ -2,17 +2,23 @@ import { IReactUploadForm } from "@typings";
 import UploadIcon from "./Icons/UploadIcon";
 import Icon from "./Icon";
 import { defaultIconSize } from "constants/generic";
-import reactUploadFormStyle from "./ReactUploadForm.style";
+import StyledReactUploadForm from "./ReactUploadForm.style";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
-	const { iconSize = defaultIconSize } = props;
+	const { 
+		iconSize = defaultIconSize, 
+		theme = 'light', 
+		rounded = true, 
+		gradientBg = true
+	} = props;
 
 	return (
-		<div
-			// style={{ '--background-color': 'yellow' }}
-			css={reactUploadFormStyle}
+		<StyledReactUploadForm
+			theme={theme}
+			rounded={rounded}
+			gradientBg={gradientBg}
 		>
 			<Icon> <UploadIcon width={iconSize} height={iconSize} /> </Icon>
-		</div>
+		</StyledReactUploadForm>
 	)
 };
