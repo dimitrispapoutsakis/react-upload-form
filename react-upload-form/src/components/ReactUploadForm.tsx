@@ -1,10 +1,14 @@
 import { IReactUploadForm } from "@typings";
-// import UploadIcon from '@img/upload.svg?react';
+import UploadIcon from "./Icons/UploadIcon";
+import Icon from "./Icon";
+import { defaultIconSize } from "constants/generic";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
-  return (
-    <div>
-        {/* <UploadIcon fill="red" width={64} height={64} /> */}
-    </div>
-  )
+	const { iconSize = defaultIconSize } = props;
+
+	return (
+		<div>
+			<Icon> <UploadIcon width={iconSize} height={iconSize} /> </Icon>
+		</div>
+	)
 };
