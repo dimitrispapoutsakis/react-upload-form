@@ -51,5 +51,11 @@ export default defineConfig({
 	output: {
 		target: 'web',
 	},
-	plugins: [pluginReact(), pluginSass()],
+	plugins: [pluginReact({
+		swcReactOptions: {
+			importSource: '@emotion/react',
+		},
+	}),
+	pluginSass()
+	],
 });

@@ -13,7 +13,7 @@
 	"scripts": {
 		"build": "rslib build",
 		"dev": "rslib mf-dev",
-		"tsc": "tsc",
+		"ts": "tsc --noEmit",
 		"lint": "biome check .",
 		"lint:fix": "biome check --write ."
 	},
