@@ -15,6 +15,7 @@ export const StyledReactUploadForm = styled.div<{ theme: TTheme, rounded: boolea
     background: ${({ theme, gradientBg }) => gradientBg ? (isLightTheme(theme) ? linearGradientLight : linearGradientDark) : 'none'};
     background-color: ${({ theme, gradientBg }) => gradientBg ? 'transparent' : (isLightTheme(theme) ? whiteAlto : darkBunker)};
     border-radius: ${({ rounded }) => (rounded ? borderRadius : '0px')};
+    user-select: none;
 `;
 
 export const StyledTextGradient = css`
