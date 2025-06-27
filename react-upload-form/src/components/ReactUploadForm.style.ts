@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { TTheme } from "@typings";
 import { isLightTheme } from "@utils/theme.util";
-import { borderRadius, darkBunker, linearGradientDark, linearGradientLight, mercury, whiteAlto } from "constants/theme";
+import { borderRadius, darkBunker, darkPickledBluewood, linearGradientDark, linearGradientLight, mercury, silver, silver2, whiteAlto } from "constants/theme";
 
 export const StyledReactUploadForm = styled.div<{ theme: TTheme, rounded: boolean, gradientBg: boolean }>`
     display: flex;
@@ -10,8 +10,8 @@ export const StyledReactUploadForm = styled.div<{ theme: TTheme, rounded: boolea
     align-items: center;
     justify-content: center;
     background-color: ${({ theme }) => isLightTheme(theme) ? mercury : 'black'};
-    width: fit-content;
-    padding: 25px;
+    min-width: 350px;
+    padding: 25px 15px;
     background: ${({ theme, gradientBg }) => gradientBg ? (isLightTheme(theme) ? linearGradientLight : linearGradientDark) : 'none'};
     background-color: ${({ theme, gradientBg }) => gradientBg ? 'transparent' : (isLightTheme(theme) ? whiteAlto : darkBunker)};
     border-radius: ${({ rounded }) => (rounded ? borderRadius : '0px')};
@@ -24,4 +24,13 @@ export const StyledTextGradient = css`
     background-clip: text;
     color: transparent;
    -webkit-text-fill-color: transparent; /* For WebKit browsers, often redundant with color: transparent but good for compatibility */
+`
+
+export const StyledBorderContainer = styled.div<{ theme: TTheme }>`
+    border: 2px dashed ${darkPickledBluewood};
+    padding: 20px;
+    border-radius: ${borderRadius};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
