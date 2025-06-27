@@ -14,6 +14,9 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 		gradientText = true,
 		text = 'Choose file / Drag & drop',
 		secondaryText = '',
+		placeholderStyle = {},
+		style = {},
+		...rest
 	} = props;
 
 	return (
@@ -21,8 +24,10 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 			theme={theme}
 			rounded={rounded}
 			gradientBg={gradientBg}
+			style={style}
+			{...rest}
 		>
-			<StyledBorderContainer theme={theme}>
+			<StyledBorderContainer theme={theme} style={placeholderStyle}>
 				<Icon>
 					<UploadIcon width={iconSize} height={iconSize} />
 				</Icon>

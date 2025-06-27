@@ -1,3 +1,5 @@
+import { CSSProperties } from "react";
+
 /* Components... */
 export interface IReactUploadForm {
     iconSize?: number;
@@ -6,6 +8,8 @@ export interface IReactUploadForm {
     gradientBg?: boolean;
     gradientText?: boolean;
     text?: string;
+    style?: CSSProperties;
+    placeholderStyle?: CSSProperties;
     secondaryText?: string;
 }
 
