@@ -143,7 +143,10 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 				)}
 
 			<div style={{ marginTop: '15px' }}>
-				<Actions selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} />
+				<Actions 
+					selectedFiles={selectedFiles}
+				 	setSelectedFiles={setSelectedFiles} 
+				/>
 			</div>
 		</StyledReactUploadForm>
 		</GlobalProvider>
