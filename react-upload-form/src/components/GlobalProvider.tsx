@@ -2,20 +2,23 @@ import { createContext, useContext, ReactNode } from 'react';
 import { TTheme } from '@typings';
 
 interface IUseGlobal {
-  
+  theme: TTheme;
+  gradientBg: boolean;
 }
 
 const GlobalContext = createContext<IUseGlobal | undefined>(undefined);
 
 interface IGlobalProvider {
   children: ReactNode;
-  theme: TTheme
 }
 
-export const GlobalProvider = (props: IGlobalProvider) => {
-  const { children, theme } = props;
+type TGlobalProvider = IGlobalProvider & IUseGlobal;
+
+export const GlobalProvider = (props: TGlobalProvider) => {
+  const { children, theme, gradientBg } = props;
   const value: IUseGlobal = {
     theme,
+    gradientBg,
   }
 
   return (

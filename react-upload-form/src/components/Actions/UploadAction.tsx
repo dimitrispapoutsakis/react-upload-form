@@ -1,9 +1,11 @@
 import Ink from "react-ink";
 import { StyledAction, StyledBorder } from "./Actions.style";
-import Icon from "./Icon";
-import CheckIcon from "./Icons/CheckIcon";
+import Icon from "@components/Icon";
+import CheckIcon from "@components/Icons/CheckIcon";
+import { useGlobal } from "@components/GlobalProvider";
 
 const UploadAction = () => {
+  const { theme, gradientBg } = useGlobal();
 
   return (
     <StyledAction theme={theme} gradientBg={gradientBg}>
@@ -11,7 +13,6 @@ const UploadAction = () => {
       <Icon width={64} height={64}>
         <CheckIcon />
       </Icon>
-      {renderInk && <Ink />}
     </StyledAction>
   );
 };

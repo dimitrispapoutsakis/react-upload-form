@@ -8,8 +8,8 @@ import { useState, useCallback } from 'react';
 import FilePreview from "./FileList";
 import ImagePreview from "./ImagePreview";
 import { isImgFile } from "@utils/generic";
-import Actions from "./Actions";
-import { GlobalProvider } from "GlobalProvider";
+import Actions from "./Actions/Actions";
+import { GlobalProvider } from "@components/GlobalProvider";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
 	const {
@@ -85,7 +85,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 	const renderFileList = !renderImagePreview && hasFiles;
 
 	return (
-		<GlobalProvider theme={theme}>
+		<GlobalProvider theme={theme} gradientBg={gradientBg}>
 		<StyledReactUploadForm
 			theme={theme}
 			rounded={rounded}
@@ -143,7 +143,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 				)}
 
 			<div style={{ marginTop: '15px' }}>
-				<Actions theme={theme} gradientBg={gradientBg} />
+				<Actions />
 			</div>
 		</StyledReactUploadForm>
 		</GlobalProvider>
