@@ -47,7 +47,12 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 	}, [onDrop]);
 
 	const handleDropAccepted = useCallback((acceptedFiles: File[], event: any) => {
-		const modifiedAcceptedFiles = acceptedFiles.map((file) => ({ ...file, type: file.type, src: URL.createObjectURL(file) } as IModifiedFile));
+		const modifiedAcceptedFiles = acceptedFiles.map((file) => ({ 
+			name: file.name,
+			size: file.size,
+			type: file.type,
+			src: URL.createObjectURL(file),
+		} as IModifiedFile));
 		setSelectedFiles(modifiedAcceptedFiles);
 		setRejectedFiles([]);
 
