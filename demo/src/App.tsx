@@ -6,7 +6,9 @@ const App = () => {
     <div className="content">
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <div style={{ marginRight: '35px' }}>
-          <ReactUploadForm theme='dark' />
+          <ReactUploadForm
+            theme='dark'
+          />
         </div>
         <div>
           <ReactUploadForm theme='light' />

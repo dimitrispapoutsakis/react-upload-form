@@ -12,6 +12,11 @@ export interface IReactUploadForm extends Omit<DropzoneOptions, 'onDrop'> {
     style?: CSSProperties;
     placeholderStyle?: CSSProperties;
     secondaryText?: string;
+    upload: {
+        serverUrl: string;
+        fileFieldName: string;
+        headers: HeadersInit;
+    }
     onDrop?: (acceptedFiles: File[], rejectedFiles: any[], event: any) => void;
 }
 
