@@ -4,6 +4,8 @@ import { Dispatch, SetStateAction, useCallback } from "react";
 import { FileListStyle, StyledFileList, StyledFileName, StyledFileSize } from "./FileList.style";
 import Icon from "./Icon";
 import TrashIcon from "./Icons/TrashIcon";
+import BlurInAnimation from "./Animations/BlurInAnimation";
+import SlideInUpAnimation from "./Animations/SlideInUpAnimation";
 
 interface IFilePreview {
     theme: TTheme;
@@ -28,24 +30,24 @@ const FilePreview = (props: IFilePreview) => {
     return (
         <div css={FileListStyle} >
             {selectedFiles.map((file, index) => (
-                <div key={index} style={{marginTop: '15px'}}>
+                <SlideInUpAnimation key={index} style={{ marginTop: '15px' }} delay={index * .1}>
                     <StyledFileList>
-                        <div style={{flex: 1}}>
+                        <div style={{ flex: 1 }}>
                             <StyledFileName theme={theme}>
                                 {file.name}
                             </StyledFileName>
                         </div>
 
-                        <div style={{display: 'flex', alignItems: 'center',  marginLeft: '15px'}}>
+                        <div style={{ display: 'flex', alignItems: 'center', marginLeft: '15px' }}>
                             <StyledFileSize theme={theme}>
                                 {formatFileSize(file.size)}
                             </StyledFileSize>
-                            <Icon onClick={() => removeFile(index)} style={{ cursor: 'pointer'}}>
+                            <Icon onClick={() => removeFile(index)} style={{ cursor: 'pointer' }}>
                                 <TrashIcon />
                             </Icon>
                         </div>
                     </StyledFileList>
-                </div>
+                </SlideInUpAnimation>
             ))}
         </div>
     );

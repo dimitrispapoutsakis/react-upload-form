@@ -94,8 +94,8 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 				style={style}
 				hasFiles={hasFiles}
 			>
+				<LayoutTransition>
 					{(!hasFiles || renderImagePreview) && (
-						/* @ts-ignore */
 						<StyledBorderContainer
 							{...getRootProps()}
 							{...rest}
@@ -132,6 +132,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 							)}
 						</StyledBorderContainer>
 					)}
+				</LayoutTransition>
 
 				{
 					renderFileList && (

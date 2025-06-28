@@ -1,18 +1,18 @@
 import { TAnimation } from '@typings';
-import { m } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { blurInAnim, blurInInit, durationDefault } from '@constants/theme';
 
-const BlurInAnimation = ( { children, ...rest }: TAnimation ) => {
+const BlurInAnimation = ( { children, delay, ...rest }: TAnimation ) => {
   return (
-    <m.div
+    <motion.div
       initial={ blurInInit }
       animate={ blurInAnim }
-      transition={ { duration: durationDefault, ease: 'anticipate' } }
+      transition={ { duration: durationDefault, ease: 'easeIn', delay: delay } }
       { ...rest }
     >
       { children }
-    </m.div>
+    </motion.div>
   );
 }
 

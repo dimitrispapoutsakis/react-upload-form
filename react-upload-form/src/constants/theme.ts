@@ -30,9 +30,14 @@ export const bezierButterAlt = 'cubic-bezier(0.09, 0.37, 0.46, 0.98)'
 export const bezierButterFramerM = [ 0.4, 0, 0.2, 1 ];
 export const blurInInit = { opacity: 0, filter: 'blur(15px)', transform: 'scale3d(.98, .98, .98)' };
 export const blurInAnim = { opacity: 1, filter: 'blur(0px)', transform: 'scale3d(1, 1, 1)' }; 
+export const fadeInInit = { opacity: 0 }; 
+export const fadeInAnim = { opacity: 1 }; 
+/* Sides ( Up ).... */
+export const slideInUpInit = { opacity: 0, transform: 'translate3d(0, 30px, 0)' };
+export const slideInUpAnim = { opacity: 1, transform: 'translate3d(0, 0, 0)' };
 
 // Shared...
-export const durationDefault = 0.5;
+export const durationDefault = 0.25;
 
 // Framer Motion...
 export const transitionDefault = { duration: 0.5, ease: 'easeInOut' }
