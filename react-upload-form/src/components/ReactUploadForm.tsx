@@ -94,6 +94,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 			hasFiles={hasFiles}
 		>
 			{(!hasFiles || renderImagePreview) && (
+				/* @ts-ignore */
 				<StyledBorderContainer
 					{...getRootProps()}
 					{...rest}
