@@ -9,6 +9,7 @@ export const StyledReactUploadForm = styled.div<{ theme: TTheme, rounded: boolea
     flex-direction: column;
     align-items: center;
     justify-content: ${({ hasFiles }) => hasFiles ? 'none' : 'center' };
+    position: relative;
     background-color: ${({ theme }) => isLightTheme(theme) ? mercury : 'black'};
     min-width: 350px;
     min-height: 239.59px;

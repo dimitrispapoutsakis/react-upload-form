@@ -8,6 +8,7 @@ import { useState, useCallback } from 'react';
 import FilePreview from "./FileList";
 import ImagePreview from "./ImagePreview";
 import { isImgFile } from "@utils/generic";
+import Actions from "./Actions";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
 	const {
@@ -47,7 +48,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 	}, [onDrop]);
 
 	const handleDropAccepted = useCallback((acceptedFiles: File[], event: any) => {
-		const modifiedAcceptedFiles = acceptedFiles.map((file) => ({ 
+		const modifiedAcceptedFiles = acceptedFiles.map((file) => ({
 			name: file.name,
 			size: file.size,
 			type: file.type,
@@ -138,6 +139,10 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 						setSelectedFiles={setSelectedFiles}
 					/>
 				)}
+
+			<div style={{ marginTop: '15px' }}>
+				<Actions theme={theme} gradientBg={gradientBg} />
+			</div>
 		</StyledReactUploadForm>
 	)
 };
