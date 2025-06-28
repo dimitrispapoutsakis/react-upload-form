@@ -9,6 +9,7 @@ import FilePreview from "./FileList";
 import ImagePreview from "./ImagePreview";
 import { isImgFile } from "@utils/generic";
 import Actions from "./Actions";
+import { GlobalProvider } from "GlobalProvider";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
 	const {
@@ -84,6 +85,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 	const renderFileList = !renderImagePreview && hasFiles;
 
 	return (
+		<GlobalProvider theme={theme}>
 		<StyledReactUploadForm
 			theme={theme}
 			rounded={rounded}
@@ -144,5 +146,6 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 				<Actions theme={theme} gradientBg={gradientBg} />
 			</div>
 		</StyledReactUploadForm>
+		</GlobalProvider>
 	)
 };
