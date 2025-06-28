@@ -22,6 +22,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 		secondaryText = '',
 		placeholderStyle = {},
 		style = {},
+		upload,
 		onDrop,
 		onDropAccepted,
 		onDropRejected,
@@ -85,71 +86,77 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 	const renderFileList = !renderImagePreview && hasFiles;
 
 	return (
-		<GlobalProvider theme={theme} gradientBg={gradientBg}>
-		<StyledReactUploadForm
+		<GlobalProvider
 			theme={theme}
-			rounded={rounded}
 			gradientBg={gradientBg}
-			style={style}
-			hasFiles={hasFiles}
+			upload={upload}
 		>
-			{(!hasFiles || renderImagePreview) && (
-				/* @ts-ignore */
-				<StyledBorderContainer
-					{...getRootProps()}
-					{...rest}
-					theme={theme}
-					style={placeholderStyle}
-					isDragActive={isDragActive}
-					isDragAccept={isDragAccept}
-					isDragReject={isDragReject}
-				>
-					{!renderImagePreview && (
-						<input {...getInputProps()} />
-					)}
-
-					{renderImagePreview
-						? <ImagePreview selectedFile={selectedFiles[0] as IModifiedFile} />
-						: (
-							<Icon width={iconSize} height={iconSize}>
-								<UploadIcon />
-							</Icon>
-						)
-					}
-
-					{!renderImagePreview && (
-						<>
-							<b css={[gradientText && StyledTextGradient]}>
-								{isDragActive
-									? (isDragReject ? 'File type not accepted!' : 'Drop the files here...')
-									: text
-								}
-							</b>
-							{secondaryText && <small style={{ marginTop: '10px' }} css={[gradientText && StyledTextGradient]}>{secondaryText}</small>}
-							<Ink />
-						</>
-					)}
-				</StyledBorderContainer>
-			)}
-
-			{
-				renderFileList && (
-					<FilePreview
+			<StyledReactUploadForm
+				theme={theme}
+				rounded={rounded}
+				gradientBg={gradientBg}
+				style={style}
+				hasFiles={hasFiles}
+			>
+				{(!hasFiles || renderImagePreview) && (
+					/* @ts-ignore */
+					<StyledBorderContainer
+						{...getRootProps()}
+						{...rest}
 						theme={theme}
-						selectedFiles={selectedFiles}
-						rejectedFiles={rejectedFiles}
-						onDrop={handleDrop}
-						setSelectedFiles={setSelectedFiles}
-					/>
+						style={placeholderStyle}
+						isDragActive={isDragActive}
+						isDragAccept={isDragAccept}
+						isDragReject={isDragReject}
+					>
+						{!renderImagePreview && (
+							<input {...getInputProps()} />
+						)}
+
+						{renderImagePreview
+							? <ImagePreview selectedFile={selectedFiles[0] as IModifiedFile} />
+							: (
+								<Icon width={iconSize} height={iconSize}>
+									<UploadIcon />
+								</Icon>
+							)
+						}
+
+						{!renderImagePreview && (
+							<>
+								<b css={[gradientText && StyledTextGradient]}>
+									{isDragActive
+										? (isDragReject ? 'File type not accepted!' : 'Drop the files here...')
+										: text
+									}
+								</b>
+								{secondaryText && <small style={{ marginTop: '10px' }} css={[gradientText && StyledTextGradient]}>{secondaryText}</small>}
+								<Ink />
+							</>
+						)}
+					</StyledBorderContainer>
 				)}
 
-			<div style={{ marginTop: '15px' }}>
-				<Actions 
-					selectedFiles={selectedFiles}
-				 	setSelectedFiles={setSelectedFiles} 
-				/>
-			</div>
-		</StyledReactUploadForm>
+				{
+					renderFileList && (
+						<FilePreview
+							theme={theme}
+							selectedFiles={selectedFiles}
+							rejectedFiles={rejectedFiles}
+							onDrop={handleDrop}
+							setSelectedFiles={setSelectedFiles}
+						/>
+					)}
+
+				{hasFiles && (
+					<div style={{ marginTop: '15px' }}>
+						<Actions
+							selectedFiles={selectedFiles}
+							setSelectedFiles={setSelectedFiles}
+						/>
+					</div>
+				)}
+			</StyledReactUploadForm>
 		</GlobalProvider>
 	)
 };

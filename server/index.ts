@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Single file upload endpoint
-app.post("/upload", upload.single("img"), (req, res) => {
+app.post("/upload", upload.single("file"), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });
   }
@@ -35,6 +35,20 @@ app.post("/upload", upload.single("img"), (req, res) => {
     message: "File uploaded successfully",
     filename: req.file.filename,
     path: `/uploads/${req.file.filename}`,
+  });
+});
+
+// Multiple files upload endpoint
+app.post("/upload-multiple", upload.array("files", 10), (req, res) => {
+  if (!req.files || req.files.length === 0) {
+    return res.status(400).json({ error: "No files uploaded" });
+  }
+  res.json({
+    message: "Files uploaded successfully",
+    files: (req.files as Express.Multer.File[]).map((file) => ({
+      filename: file.filename,
+      path: `/uploads/${file.filename}`,
+    })),
   });
 });
 

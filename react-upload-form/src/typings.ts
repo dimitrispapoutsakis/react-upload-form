@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { DropzoneOptions } from "react-dropzone";
 
 /* Components... */
@@ -12,17 +12,23 @@ export interface IReactUploadForm extends Omit<DropzoneOptions, 'onDrop'> {
     style?: CSSProperties;
     placeholderStyle?: CSSProperties;
     secondaryText?: string;
-    upload: {
-        serverUrl: string;
-        fileFieldName: string;
-        headers: HeadersInit;
-    }
+    upload: IUploadProp;
     onDrop?: (acceptedFiles: File[], rejectedFiles: any[], event: any) => void;
 }
 
+export interface IUploadProp {
+    serverUrl: string;
+    fileFieldName: string;
+    headers: HeadersInit;
+}
+
 export interface ISelectedFiles {
-    selectedFiles?: File[];
+    selectedFiles: File[];
     setSelectedFiles: (selectedFiles: File[]) => void;
+}
+
+export interface IChildren {
+    children: ReactNode;
 }
 
 /* Theme... */
