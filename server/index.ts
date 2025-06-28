@@ -1,1 +1,46 @@
-console.log("Hello via Bun!");
+import express from "express";
+import multer from "multer";
+import cors from "cors";
+import path from "path";
+import fs from "fs";
+
+const app = express();
+const PORT = 8080;
+
+// Enable CORS for all origins (for demo purposes)
+app.use(cors());
+
+// Set up storage for multer
+const uploadDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadDir);
+  },
+  filename: function (req, file, cb) {
+    // Use original file name
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage });
+
+// Single file upload endpoint
+app.post("/upload", upload.single("img"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded" });
+  }
+  res.json({
+    message: "File uploaded successfully",
+    filename: req.file.filename,
+    path: `/uploads/${req.file.filename}`,
+  });
+});
+
+// Serve uploaded files statically
+app.use("/uploads", express.static(uploadDir));
+
+app.listen(PORT, () => {
+  console.log(`Server listening on http://localhost:${PORT}`);
+});
