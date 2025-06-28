@@ -1,7 +1,7 @@
 import { TTheme } from "@typings";
 import { formatFileSize } from "@utils/formatting.util";
-import { Dispatch, Fragment, SetStateAction, useCallback } from "react";
-import { FilePreviewStyle, StyledFileList, StyledFileName, StyledFileSize } from "./FilePreview.style";
+import { Dispatch, SetStateAction, useCallback } from "react";
+import { FileListStyle, StyledFileList, StyledFileName, StyledFileSize } from "./FileList.style";
 import Icon from "./Icon";
 import TrashIcon from "./Icons/TrashIcon";
 
@@ -26,7 +26,7 @@ const FilePreview = (props: IFilePreview) => {
     }, [selectedFiles, rejectedFiles, onDrop]);
 
     return (
-        <div css={FilePreviewStyle} >
+        <div css={FileListStyle} >
             {selectedFiles.map((file, index) => (
                 <div key={index} style={{marginTop: '15px'}}>
                     <StyledFileList>

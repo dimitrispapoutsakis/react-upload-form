@@ -7,7 +7,7 @@ import Ink from 'react-ink'
 import { useDropzone } from 'react-dropzone';
 import { useState, useCallback } from 'react';
 import { isLightTheme } from "@utils/theme.util";
-import FilePreview from "./FilePreview";
+import FilePreview from "./FileList";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
 	const {

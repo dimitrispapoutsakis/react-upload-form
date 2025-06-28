@@ -2,9 +2,9 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { TTheme } from '@typings';
 import { isLightTheme } from '@utils/theme.util';
-import { silver, silver2 } from 'constants/theme';
+import { silver2 } from 'constants/theme';
 
-export const FilePreviewStyle = css`
+export const FileListStyle = css`
     width: 100%;
 `
 
