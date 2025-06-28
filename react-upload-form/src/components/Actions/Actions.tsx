@@ -1,4 +1,4 @@
-import { TTheme } from "@typings";
+import { ISelectedFiles, TTheme } from "@typings";
 import { ActionsStyle, StyledAction, StyledBorder } from "./Actions.style";
 import Icon from "@components/Icon";
 import CheckIcon from "@components/Icons/CheckIcon";
@@ -9,10 +9,10 @@ import { useGlobal } from "@components/GlobalProvider";
 import UploadAction from "./UploadAction";
 import DiscardAction from "./DiscardAction";
 
-const Actions = () => (
+const Actions = ({ selectedFiles, setSelectedFiles }: ISelectedFiles) => (
   <div css={ActionsStyle}>
-    <UploadAction />
-    <DiscardAction />
+    <UploadAction selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} />
+    <DiscardAction selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} />
   </div>
 );
 

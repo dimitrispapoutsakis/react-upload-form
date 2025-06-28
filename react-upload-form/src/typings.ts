@@ -15,6 +15,11 @@ export interface IReactUploadForm extends Omit<DropzoneOptions, 'onDrop'> {
     onDrop?: (acceptedFiles: File[], rejectedFiles: any[], event: any) => void;
 }
 
+export interface ISelectedFiles {
+    selectedFiles?: File[];
+    setSelectedFiles: (selectedFiles: File[]) => void;
+}
+
 /* Theme... */
 export type TTheme = 'light' | 'dark';
 

@@ -2,12 +2,13 @@ import { StyledAction, StyledBorder } from "./Actions.style";
 import Icon from "@components/Icon";
 import { useGlobal } from "@components/GlobalProvider";
 import TrashIcon from "@components/Icons/TrashIcon";
+import { ISelectedFiles } from "@typings";
 
-const DiscardAction = () => {
+const DiscardAction = ({ selectedFiles, setSelectedFiles }: ISelectedFiles) => {
   const { theme, gradientBg } = useGlobal();
 
   return (
-    <StyledAction theme={theme} gradientBg={gradientBg}>
+    <StyledAction theme={theme} gradientBg={gradientBg} onClick={() => setSelectedFiles([])}>
       <StyledBorder />
       <Icon width={64} height={64}>
         <TrashIcon />

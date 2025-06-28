@@ -3,8 +3,9 @@ import { StyledAction, StyledBorder } from "./Actions.style";
 import Icon from "@components/Icon";
 import CheckIcon from "@components/Icons/CheckIcon";
 import { useGlobal } from "@components/GlobalProvider";
+import { ISelectedFiles } from "@typings";
 
-const UploadAction = () => {
+const UploadAction = ({selectedFiles}: ISelectedFiles) => {
   const { theme, gradientBg } = useGlobal();
 
   return (
