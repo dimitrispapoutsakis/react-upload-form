@@ -1,0 +1,1 @@
+export const isImgFile = (mimeType: string) => mimeType === 'image/png';

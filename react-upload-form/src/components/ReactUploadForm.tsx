@@ -7,6 +7,7 @@ import { useDropzone } from 'react-dropzone';
 import { useState, useCallback } from 'react';
 import FilePreview from "./FileList";
 import ImagePreview from "./ImagePreview";
+import { isImgFile } from "@utils/generic";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
 	const {
@@ -46,7 +47,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 	}, [onDrop]);
 
 	const handleDropAccepted = useCallback((acceptedFiles: File[], event: any) => {
-		const modifiedAcceptedFiles = acceptedFiles.map((file) => ({ ...file, src: URL.createObjectURL(file) } as IModifiedFile));
+		const modifiedAcceptedFiles = acceptedFiles.map((file) => ({ ...file, type: file.type, src: URL.createObjectURL(file) } as IModifiedFile));
 		setSelectedFiles(modifiedAcceptedFiles);
 		setRejectedFiles([]);
 
@@ -73,7 +74,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 
 	const fileCount = selectedFiles.length;
 	const hasFiles = fileCount > 0;
-	const renderImagePreview = fileCount === 1;
+	const renderImagePreview = fileCount === 1 && isImgFile(selectedFiles[0].type);
 	const renderFileList = !renderImagePreview && hasFiles;
 
 	return (
