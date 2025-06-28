@@ -27,8 +27,18 @@ export const StyledTextGradient = css`
    -webkit-text-fill-color: transparent; /* For WebKit browsers, often redundant with color: transparent but good for compatibility */
 `
 
-export const StyledBorderContainer = styled.div<{ theme: TTheme }>`
-    border: 2px dashed ${darkPickledBluewood};
+export const StyledBorderContainer = styled.div<{ 
+    theme: TTheme;
+    isDragActive?: boolean;
+    isDragAccept?: boolean;
+    isDragReject?: boolean;
+}>`
+    border: 2px dashed ${({ theme, isDragActive, isDragAccept, isDragReject }) => {
+        if (isDragReject) return '#ff4444';
+        if (isDragAccept) return '#00C851';
+        if (isDragActive) return '#2196F3';
+        return darkPickledBluewood;
+    }};
     padding: 20px;
     border-radius: ${borderRadius};
     display: flex;
@@ -36,7 +46,14 @@ export const StyledBorderContainer = styled.div<{ theme: TTheme }>`
     position: relative;
     align-items: center;
     cursor: pointer;
-    transition: transform .25s ease;
+    transition: all .25s ease;
+    background-color: ${({ isDragActive, isDragAccept, isDragReject }) => {
+        if (isDragReject) return 'rgba(255, 68, 68, 0.1)';
+        if (isDragAccept) return 'rgba(0, 200, 81, 0.1)';
+        if (isDragActive) return 'rgba(33, 150, 243, 0.1)';
+        return 'transparent';
+    }};
+    
     &:hover {
         transform: scale3d(1.05, 1.05, 1.05);
     }

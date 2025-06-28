@@ -1,7 +1,8 @@
 import { CSSProperties } from "react";
+import { DropzoneOptions } from "react-dropzone";
 
 /* Components... */
-export interface IReactUploadForm {
+export interface IReactUploadForm extends Omit<DropzoneOptions, 'onDrop'> {
     iconSize?: number;
     theme: TTheme;
     rounded?: boolean;
@@ -11,6 +12,7 @@ export interface IReactUploadForm {
     style?: CSSProperties;
     placeholderStyle?: CSSProperties;
     secondaryText?: string;
+    onDrop?: (acceptedFiles: File[], rejectedFiles: any[], event: any) => void;
 }
 
 /* Theme... */
