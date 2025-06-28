@@ -99,7 +99,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 					)}
 
 					{renderImagePreview
-						? <ImagePreview selectedFile={selectedFiles[0]} />
+						? <ImagePreview selectedFile={selectedFiles[0] as IModifiedFile} />
 						: (
 							<Icon width={iconSize} height={iconSize}>
 								<UploadIcon />
