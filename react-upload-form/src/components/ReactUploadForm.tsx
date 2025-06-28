@@ -8,6 +8,7 @@ import { useDropzone } from 'react-dropzone';
 import { useState, useCallback } from 'react';
 import { isLightTheme } from "@utils/theme.util";
 import FilePreview from "./FileList";
+import ImagePreview from "./ImagePreview";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
 	const {
@@ -37,7 +38,6 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 	const [rejectedFiles, setRejectedFiles] = useState<any[]>([]);
-	const [ fileType, setFileType ] = useState('')
 
 	/* Drop handling... */
 	const handleDrop = useCallback((acceptedFiles: File[], rejectedFiles: any[], event: any) => {
@@ -72,7 +72,10 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 		disabled,
 	});
 
-	const hasFiles = selectedFiles.length > 0;
+	const fileCount = selectedFiles.length;
+	const hasFiles = fileCount > 0;
+	const renderImagePreview = fileCount === 1;
+	const renderFileList = !renderImagePreview && hasFiles;
 
 	return (
 		<StyledReactUploadForm
@@ -82,33 +85,46 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 			style={style}
 			hasFiles={hasFiles}
 		>
-			{ !hasFiles && (
-			<StyledBorderContainer
-				{...getRootProps()}
-				{...rest}
-				theme={theme}
-				style={placeholderStyle}
-				isDragActive={isDragActive}
-				isDragAccept={isDragAccept}
-				isDragReject={isDragReject}
-			>
-				<input {...getInputProps()} />
-				<Icon width={iconSize} height={iconSize}>
-					<UploadIcon />
-				</Icon>
-				<b css={[gradientText && StyledTextGradient]}>
-					{isDragActive
-						? (isDragReject ? 'File type not accepted!' : 'Drop the files here...')
-						: text
+			{(!hasFiles || renderImagePreview) && (
+				<StyledBorderContainer
+					{...getRootProps()}
+					{...rest}
+					theme={theme}
+					style={placeholderStyle}
+					isDragActive={isDragActive}
+					isDragAccept={isDragAccept}
+					isDragReject={isDragReject}
+				>
+					{!renderImagePreview && (
+						<input {...getInputProps()} />
+					)}
+
+					{renderImagePreview
+						? <ImagePreview selectedFile={selectedFiles[0]} />
+						: (
+							<Icon width={iconSize} height={iconSize}>
+								<UploadIcon />
+							</Icon>
+						)
 					}
-				</b>
-				{secondaryText && <small style={{ marginTop: '10px' }} css={[gradientText && StyledTextGradient]}>{secondaryText}</small>}
-				<Ink />
-			</StyledBorderContainer>
-			) }
+
+					{!renderImagePreview && (
+						<>
+							<b css={[gradientText && StyledTextGradient]}>
+								{isDragActive
+									? (isDragReject ? 'File type not accepted!' : 'Drop the files here...')
+									: text
+								}
+							</b>
+							{secondaryText && <small style={{ marginTop: '10px' }} css={[gradientText && StyledTextGradient]}>{secondaryText}</small>}
+							<Ink />
+						</>
+					)}
+				</StyledBorderContainer>
+			)}
 
 			{
-				hasFiles && (
+				renderFileList && (
 					<FilePreview
 						theme={theme}
 						selectedFiles={selectedFiles}
