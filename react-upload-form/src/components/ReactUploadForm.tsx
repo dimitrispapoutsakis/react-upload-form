@@ -37,6 +37,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 	const [rejectedFiles, setRejectedFiles] = useState<any[]>([]);
+	const [ fileType, setFileType ] = useState('')
 
 	/* Drop handling... */
 	const handleDrop = useCallback((acceptedFiles: File[], rejectedFiles: any[], event: any) => {

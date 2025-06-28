@@ -14,6 +14,7 @@ export const StyledFileList = styled.div`
     text-align: left;
     align-items: center;
 `
+
 export const StyledFileName = styled.div<{ theme: TTheme }>`
     font-weight: bold;
     color: ${({ theme }) => isLightTheme(theme) ? '#333' : '#fff' };

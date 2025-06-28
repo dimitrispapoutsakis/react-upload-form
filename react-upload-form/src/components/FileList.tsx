@@ -36,7 +36,7 @@ const FilePreview = (props: IFilePreview) => {
                             </StyledFileName>
                         </div>
 
-                        <div style={{display: 'flex', alignItems: 'center'}}>
+                        <div style={{display: 'flex', alignItems: 'center',  marginLeft: '15px'}}>
                             <StyledFileSize theme={theme}>
                                 {formatFileSize(file.size)}
                             </StyledFileSize>
