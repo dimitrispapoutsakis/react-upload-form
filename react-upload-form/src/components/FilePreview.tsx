@@ -1,0 +1,54 @@
+import { TTheme } from "@typings";
+import { formatFileSize } from "@utils/formatting.util";
+import { Dispatch, Fragment, SetStateAction, useCallback } from "react";
+import { FilePreviewStyle, StyledFileList, StyledFileName, StyledFileSize } from "./FilePreview.style";
+import Icon from "./Icon";
+import TrashIcon from "./Icons/TrashIcon";
+
+interface IFilePreview {
+    theme: TTheme;
+    selectedFiles: Array<File>;
+    rejectedFiles: Array<File>;
+    onDrop: (acceptedFiles: File[], rejectedFiles: any[], event: any) => void;
+    setSelectedFiles: Dispatch<SetStateAction<File[]>>;
+}
+
+const FilePreview = (props: IFilePreview) => {
+    const { theme, selectedFiles, rejectedFiles, onDrop, setSelectedFiles } = props;
+
+    const removeFile = useCallback((index: number) => {
+        const newFiles = selectedFiles.filter((_, i) => i !== index);
+        setSelectedFiles(newFiles);
+
+        if (onDrop) {
+            onDrop(newFiles, rejectedFiles, {} as any);
+        }
+    }, [selectedFiles, rejectedFiles, onDrop]);
+
+    return (
+        <div css={FilePreviewStyle} >
+            {selectedFiles.map((file, index) => (
+                <div key={index} style={{marginTop: '15px'}}>
+                    <StyledFileList>
+                        <div style={{flex: 1}}>
+                            <StyledFileName theme={theme}>
+                                {file.name}
+                            </StyledFileName>
+                        </div>
+
+                        <div style={{display: 'flex', alignItems: 'center', cursor: 'pointer'}}>
+                            <StyledFileSize theme={theme}>
+                                {formatFileSize(file.size)}
+                            </StyledFileSize>
+                            <Icon onClick={() => removeFile(index)}>
+                                <TrashIcon />
+                            </Icon>
+                        </div>
+                    </StyledFileList>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+export default FilePreview;

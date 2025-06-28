@@ -1,10 +1,14 @@
-interface IIcon {
+import { defaultIconSize } from "constants/generic";
+import { HTMLAttributes, InsHTMLAttributes } from "react";
+
+interface IIcon extends HTMLAttributes<SVGElement> {
     children: React.ReactNode;
     width?: number;
     height?: number;
 }
 
-const Icon = ({ children, width = 128, height = 128 }: IIcon) => {
+const Icon = (props: IIcon) => {
+    const { children, width = defaultIconSize, height = defaultIconSize, ...rest } = props;
     return (
         <svg
             width={`${width}px`}
@@ -12,6 +16,7 @@ const Icon = ({ children, width = 128, height = 128 }: IIcon) => {
             viewBox="0 0 430 430"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            {...rest}
         >
             {children}
         </svg>
