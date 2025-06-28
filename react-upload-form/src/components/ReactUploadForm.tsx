@@ -107,7 +107,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 			) }
 
 			{
-				hasFiles > 0 && (
+				hasFiles && (
 					<FilePreview
 						theme={theme}
 						selectedFiles={selectedFiles}
