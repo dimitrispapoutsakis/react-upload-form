@@ -21,7 +21,6 @@ export const StyledReactUploadForm = styled.div<{ theme: TTheme, rounded: boolea
 `;
 
 export const StyledTextGradient = css`
-    background: linear-gradient(74deg, blue 0%, red 9%, yellow 20%, blue 24%, red 35%, blue 44%, red 50%, blue 56%, red 75%, blue 100%);
     background-image: linear-gradient(to right, #6a5acd, #ff6347);
     -webkit-background-clip: text; /* For WebKit browsers */
     background-clip: text;
