@@ -1,12 +1,10 @@
-import { IReactUploadForm } from "@typings";
+import { IModifiedFile, IReactUploadForm } from "@typings";
 import UploadIcon from "./Icons/UploadIcon";
 import Icon from "./Icon";
-import { defaultIconSize } from "constants/generic";
 import { StyledReactUploadForm, StyledTextGradient, StyledBorderContainer } from "./ReactUploadForm.style";
 import Ink from 'react-ink'
 import { useDropzone } from 'react-dropzone';
 import { useState, useCallback } from 'react';
-import { isLightTheme } from "@utils/theme.util";
 import FilePreview from "./FileList";
 import ImagePreview from "./ImagePreview";
 
@@ -48,7 +46,8 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 	}, [onDrop]);
 
 	const handleDropAccepted = useCallback((acceptedFiles: File[], event: any) => {
-		setSelectedFiles(acceptedFiles);
+		const modifiedAcceptedFiles = acceptedFiles.map((file) => ({ ...file, src: URL.createObjectURL(file) } as IModifiedFile));
+		setSelectedFiles(modifiedAcceptedFiles);
 		setRejectedFiles([]);
 
 		if (onDropAccepted) onDropAccepted(acceptedFiles, event);

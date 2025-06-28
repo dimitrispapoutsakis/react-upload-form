@@ -17,3 +17,8 @@ export interface IReactUploadForm extends Omit<DropzoneOptions, 'onDrop'> {
 
 /* Theme... */
 export type TTheme = 'light' | 'dark';
+
+/* Generic... */
+export interface IModifiedFile extends File {
+    src: string;
+}

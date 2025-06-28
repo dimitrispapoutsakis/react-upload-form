@@ -1,13 +1,13 @@
+import { IModifiedFile } from "@typings";
+
 interface IFilePreview {
-  selectedFile: File;
+  selectedFile: IModifiedFile;
 }
 
 const imagePreview = ({ selectedFile }: IFilePreview) => {
-  const imgSrc = URL.createObjectURL(selectedFile);
-
   return (
     <div>
-      <img src={imgSrc} />
+      <img style={{objectFit: 'contain' }} width={256} height={256} src={selectedFile.src} />
     </div>
   );
 };
