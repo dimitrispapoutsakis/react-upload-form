@@ -36,11 +36,11 @@ const FilePreview = (props: IFilePreview) => {
                             </StyledFileName>
                         </div>
 
-                        <div style={{display: 'flex', alignItems: 'center', cursor: 'pointer'}}>
+                        <div style={{display: 'flex', alignItems: 'center'}}>
                             <StyledFileSize theme={theme}>
                                 {formatFileSize(file.size)}
                             </StyledFileSize>
-                            <Icon onClick={() => removeFile(index)}>
+                            <Icon onClick={() => removeFile(index)} style={{ cursor: 'pointer'}}>
                                 <TrashIcon />
                             </Icon>
                         </div>

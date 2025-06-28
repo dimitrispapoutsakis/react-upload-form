@@ -4,13 +4,14 @@ import { TTheme } from "@typings";
 import { isLightTheme } from "@utils/theme.util";
 import { borderRadius, darkBunker, darkPickledBluewood, linearGradientDark, linearGradientLight, mercury, silver, silver2, whiteAlto } from "constants/theme";
 
-export const StyledReactUploadForm = styled.div<{ theme: TTheme, rounded: boolean, gradientBg: boolean }>`
+export const StyledReactUploadForm = styled.div<{ theme: TTheme, rounded: boolean, gradientBg: boolean, hasFiles: boolean}>`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: ${({ hasFiles }) => hasFiles ? 'none' : 'center' };
     background-color: ${({ theme }) => isLightTheme(theme) ? mercury : 'black'};
     min-width: 350px;
+    min-height: 239.59px;
     padding: 25px 15px;
     background: ${({ theme, gradientBg }) => gradientBg ? (isLightTheme(theme) ? linearGradientLight : linearGradientDark) : 'none'};
     background-color: ${({ theme, gradientBg }) => gradientBg ? 'transparent' : (isLightTheme(theme) ? whiteAlto : darkBunker)};

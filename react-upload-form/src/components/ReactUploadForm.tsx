@@ -71,7 +71,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 		disabled,
 	});
 
-	const hasFiles = selectedFiles.length;
+	const hasFiles = selectedFiles.length > 0;
 
 	return (
 		<StyledReactUploadForm
@@ -79,6 +79,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 			rounded={rounded}
 			gradientBg={gradientBg}
 			style={style}
+			hasFiles={hasFiles}
 		>
 			{ !hasFiles && (
 			<StyledBorderContainer
