@@ -4,7 +4,7 @@ import { DropzoneOptions } from "react-dropzone";
 /* Components... */
 export interface IReactUploadForm extends Omit<DropzoneOptions, 'onDrop'> {
     iconSize?: number;
-    theme: TTheme;
+    theme?: TTheme;
     rounded?: boolean;
     gradientBg?: boolean;
     gradientText?: boolean;

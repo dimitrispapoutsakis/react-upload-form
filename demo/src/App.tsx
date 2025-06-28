@@ -7,11 +7,19 @@ const App = () => {
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <div style={{ marginRight: '35px' }}>
           <ReactUploadForm
-            theme='dark'
+            upload={{
+              serverUrl: 'http://localhost:8080',
+              fileFieldName: 'img',
+              headers: {
+                'Authorization': 'Client-ID ******'
+              },
+            }}
           />
         </div>
         <div>
-          <ReactUploadForm theme='light' />
+        {/* <ReactUploadForm
+            upload={}
+          /> */}
         </div>
       </div>
       <h1>Rsbuild with React</h1>
