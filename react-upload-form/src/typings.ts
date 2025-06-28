@@ -1,3 +1,4 @@
+import { MotionProps } from "framer-motion";
 import { CSSProperties, ReactNode } from "react";
 import { DropzoneOptions } from "react-dropzone";
 
@@ -38,3 +39,11 @@ export type TTheme = 'light' | 'dark';
 export interface IModifiedFile extends File {
     src: string;
 }
+
+export interface IRestProps {
+    [key: string]: any;
+}
+
+export type TMotionTransition = Pick<MotionProps, 'transition'>;
+
+export type TAnimation = IChildren & IRestProps & TMotionTransition;
