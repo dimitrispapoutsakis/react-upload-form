@@ -1,7 +1,7 @@
 import { IModifiedFile, IReactUploadForm } from "@typings";
 import UploadIcon from "./Icons/UploadIcon";
 import Icon from "./Icon";
-import { StyledReactUploadForm, StyledTextGradient, StyledBorderContainer } from "./ReactUploadForm.style";
+import { StyledReactUploadForm, StyledBorderContainer, TextGradientStyle } from "./ReactUploadForm.style";
 import Ink from 'react-ink'
 import { useDropzone } from 'react-dropzone';
 import { useState, useCallback } from 'react';
@@ -10,9 +10,7 @@ import ImagePreview from "./ImagePreview";
 import { isImgFile } from "@utils/generic";
 import Actions from "./Actions/Actions";
 import { GlobalProvider } from "@components/GlobalProvider";
-import { m } from 'framer-motion';
-import LayoutTransition from "./Animations/LayoutTransition";
-import ProgressContainer from "./ProgrssContainer";
+import UploadScreen from "./UploadScreen/UploadScreen";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
 	const {
@@ -95,6 +93,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 				style={style}
 				hasFiles={hasFiles}
 			>
+				<UploadScreen />
 				{(!hasFiles || renderImagePreview) && (
 					/* @ts-ignore */
 					<StyledBorderContainer
@@ -121,20 +120,18 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 
 						{!renderImagePreview && (
 							<>
-								<b css={[gradientText && StyledTextGradient]}>
+								<b css={[gradientText && TextGradientStyle]}>
 									{isDragActive
 										? (isDragReject ? 'File type not accepted!' : 'Drop the files here...')
 										: text
 									}
 								</b>
-								{secondaryText && <small style={{ marginTop: '10px' }} css={[gradientText && StyledTextGradient]}>{secondaryText}</small>}
+								{secondaryText && <small style={{ marginTop: '10px' }} css={[gradientText && TextGradientStyle]}>{secondaryText}</small>}
 								<Ink />
 							</>
 						)}
 					</StyledBorderContainer>
 				)}
-
-				<ProgressContainer />
 
 				{
 					renderFileList && (

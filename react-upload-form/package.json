@@ -33,6 +33,7 @@
 	},
 	"dependencies": {
 		"@ast-grep/napi-linux-x64-gnu": "^0.38.6",
+		"@emotion/css": "^11.13.5",
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.1",
 		"framer-motion": "^12.19.2",

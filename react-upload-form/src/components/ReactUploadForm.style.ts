@@ -20,7 +20,7 @@ export const StyledReactUploadForm = styled.div<{ theme: TTheme, rounded: boolea
     user-select: none;
 `;
 
-export const StyledTextGradient = css`
+export const TextGradientStyle = css`
     background-image: linear-gradient(to right, #6a5acd, #ff6347);
     -webkit-background-clip: text; /* For WebKit browsers */
     background-clip: text;

@@ -64,7 +64,9 @@ const UploadAction = ({ selectedFiles }: ISelectedFiles) => {
       console.error('Upload error:', error);
       alert(`Upload failed: ${error.message}`);
     } finally {
-      setIsUploading(false);
+      setTimeout(() => {
+        setIsUploading(false);
+      }, 1000);
     }
   } 
 
