@@ -40,6 +40,19 @@ app.post("/upload", upload.array("file"), (req, res) => {
   });
 });
 
+// Error handling middleware for multer
+app.use((error: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  if (error instanceof multer.MulterError) {
+    if (error.code === 'LIMIT_FILE_SIZE') {
+      return res.status(413).json({ error: 'File too large. Maximum size is 100MB.' });
+    }
+    if (error.code === 'LIMIT_FILE_COUNT') {
+      return res.status(413).json({ error: 'Too many files. Maximum is 10 files.' });
+    }
+  }
+  next(error);
+});
+
 // Multiple files upload endpoint
 app.post("/upload-multiple", upload.array("files", 10), (req, res) => {
   if (!req.files || req.files.length === 0) {
