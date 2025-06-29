@@ -6,7 +6,7 @@ import { useGlobal } from "@components/GlobalProvider";
 import { ISelectedFiles } from "@typings";
 
 const UploadAction = ({ selectedFiles }: ISelectedFiles) => {
-  const { theme, gradientBg, upload } = useGlobal();
+  const { theme, gradientBg, upload, setIsUploading } = useGlobal();
 
   const uploadFile = async () => {
     const formData = new FormData();
@@ -14,12 +14,18 @@ const UploadAction = ({ selectedFiles }: ISelectedFiles) => {
       formData.append(upload.fileFieldName, file);
     }
 
+    setIsUploading(true);
+
     await fetch(upload.serverUrl, {
       method: 'POST',
       body: formData,
       headers: { ...upload.headers }
     });
-  }
+
+    setTimeout(() => {
+      setIsUploading(false);
+    }, 500);
+  } 
 
   return (
     <StyledAction theme={theme} gradientBg={gradientBg} onClick={uploadFile}>

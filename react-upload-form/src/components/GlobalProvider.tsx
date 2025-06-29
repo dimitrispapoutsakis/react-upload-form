@@ -1,10 +1,12 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { IChildren, IUploadProp, TTheme } from '@typings';
 
 interface IUseGlobal {
   theme: TTheme;
   gradientBg: boolean;
   upload: IUploadProp;
+  isUploading: boolean;
+  setIsUploading: (isUploading: boolean) => void;
 }
 
 const GlobalContext = createContext<IUseGlobal | undefined>(undefined);
@@ -12,11 +14,14 @@ const GlobalContext = createContext<IUseGlobal | undefined>(undefined);
 type TGlobalProvider = IChildren & IUseGlobal;
 
 export const GlobalProvider = (props: TGlobalProvider) => {
+  const [ isUploading, setIsUploading ] = useState(false);
   const { children, theme, gradientBg, upload } = props;
   const value: IUseGlobal = {
     theme,
     gradientBg,
     upload,
+    isUploading,
+    setIsUploading,
   }
 
   return (

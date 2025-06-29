@@ -12,6 +12,7 @@ import Actions from "./Actions/Actions";
 import { GlobalProvider } from "@components/GlobalProvider";
 import { m } from 'framer-motion';
 import LayoutTransition from "./Animations/LayoutTransition";
+import ProgressContainer from "./ProgrssContainer";
 
 export const ReactUploadForm = (props: IReactUploadForm) => {
 	const {
@@ -94,45 +95,46 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 				style={style}
 				hasFiles={hasFiles}
 			>
-				<LayoutTransition>
-					{(!hasFiles || renderImagePreview) && (
-						<StyledBorderContainer
-							{...getRootProps()}
-							{...rest}
-							theme={theme}
-							style={placeholderStyle}
-							isDragActive={isDragActive}
-							isDragAccept={isDragAccept}
-							isDragReject={isDragReject}
-						>
-							{!renderImagePreview && (
-								<input {...getInputProps()} />
-							)}
+				{(!hasFiles || renderImagePreview) && (
+					/* @ts-ignore */
+					<StyledBorderContainer
+						{...getRootProps()}
+						{...rest}
+						theme={theme}
+						style={placeholderStyle}
+						isDragActive={isDragActive}
+						isDragAccept={isDragAccept}
+						isDragReject={isDragReject}
+					>
+						{!renderImagePreview && (
+							<input {...getInputProps()} />
+						)}
 
-							{renderImagePreview
-								? <ImagePreview selectedFile={selectedFiles[0] as IModifiedFile} />
-								: (
-									<Icon width={iconSize} height={iconSize}>
-										<UploadIcon />
-									</Icon>
-								)
-							}
+						{renderImagePreview
+							? <ImagePreview selectedFile={selectedFiles[0] as IModifiedFile} />
+							: (
+								<Icon width={iconSize} height={iconSize}>
+									<UploadIcon />
+								</Icon>
+							)
+						}
 
-							{!renderImagePreview && (
-								<>
-									<b css={[gradientText && StyledTextGradient]}>
-										{isDragActive
-											? (isDragReject ? 'File type not accepted!' : 'Drop the files here...')
-											: text
-										}
-									</b>
-									{secondaryText && <small style={{ marginTop: '10px' }} css={[gradientText && StyledTextGradient]}>{secondaryText}</small>}
-									<Ink />
-								</>
-							)}
-						</StyledBorderContainer>
-					)}
-				</LayoutTransition>
+						{!renderImagePreview && (
+							<>
+								<b css={[gradientText && StyledTextGradient]}>
+									{isDragActive
+										? (isDragReject ? 'File type not accepted!' : 'Drop the files here...')
+										: text
+									}
+								</b>
+								{secondaryText && <small style={{ marginTop: '10px' }} css={[gradientText && StyledTextGradient]}>{secondaryText}</small>}
+								<Ink />
+							</>
+						)}
+					</StyledBorderContainer>
+				)}
+
+				<ProgressContainer />
 
 				{
 					renderFileList && (
