@@ -1,19 +1,17 @@
 import { TextGradientStyle } from "@components/ReactUploadForm.style";
 import { StyledLoadingText, StyledOverlay, StyledUploadScreen } from "./UploadScreen.style";
-import { cx } from "@emotion/css";
 import { useGlobal } from "@components/GlobalProvider";
-import BlurInAnimation from "@components/Animations/BlurInAnimation";
-import FadeInAnimation from "@components/Animations/FadeInAnimation";
 
 const UploadScreen = () => {
-  const { isUploading } = useGlobal();
+  const { isUploading, uploadProgress } = useGlobal();
   if (!isUploading) return null;
+  const formattedUploadProgress = uploadProgress.toFixed(2);
 
   return (
     <StyledUploadScreen>
       <StyledOverlay />
       <StyledLoadingText css={TextGradientStyle}>
-        0%
+        {formattedUploadProgress}%
       </StyledLoadingText>
     </StyledUploadScreen>
   );

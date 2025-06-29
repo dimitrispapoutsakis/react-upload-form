@@ -5,7 +5,7 @@ import { useGlobal } from "@components/GlobalProvider";
 import { ISelectedFiles } from "@typings";
 
 const UploadAction = ({ selectedFiles }: ISelectedFiles) => {
-  const { theme, gradientBg, upload, setIsUploading } = useGlobal();
+  const { theme, gradientBg, upload, setIsUploading, setUploadProgress } = useGlobal();
 
   const uploadFile = async () => {
     try {
@@ -22,8 +22,14 @@ const UploadAction = ({ selectedFiles }: ISelectedFiles) => {
         xhr.upload.addEventListener('progress', (event) => {
           if (event.lengthComputable) {
             const progress = (event.loaded / event.total) * 100;
-            // You can emit this progress to update the progress bar
-            console.log(`Upload progress: ${progress.toFixed(2)}%`);
+            setUploadProgress(progress);
+
+            if (progress === 100) {
+              setTimeout(() => {
+                setIsUploading(false);
+                setUploadProgress(0);
+              }, 800);
+            }
           }
         });
 
@@ -62,11 +68,7 @@ const UploadAction = ({ selectedFiles }: ISelectedFiles) => {
       
     } catch (error) {
       console.error('Upload error:', error);
-      alert(`Upload failed: ${error.message}`);
-    } finally {
-      setTimeout(() => {
-        setIsUploading(false);
-      }, 1000);
+      console.error(`Upload failed: ${error.message}`);
     }
   } 
 

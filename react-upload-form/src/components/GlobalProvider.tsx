@@ -7,6 +7,8 @@ interface IUseGlobal {
   upload: IUploadProp;
   isUploading: boolean;
   setIsUploading: (isUploading: boolean) => void;
+  uploadProgress: number;
+  setUploadProgress: (uploadProgress: number) => void;
 }
 
 const GlobalContext = createContext<IUseGlobal | undefined>(undefined);
@@ -15,6 +17,7 @@ type TGlobalProvider = IChildren & IUseGlobal;
 
 export const GlobalProvider = (props: TGlobalProvider) => {
   const [ isUploading, setIsUploading ] = useState(false);
+  const [ uploadProgress, setUploadProgress ] = useState(0);
   const { children, theme, gradientBg, upload } = props;
   const value: IUseGlobal = {
     theme,
@@ -22,6 +25,8 @@ export const GlobalProvider = (props: TGlobalProvider) => {
     upload,
     isUploading,
     setIsUploading,
+    uploadProgress,
+    setUploadProgress,
   }
 
   return (
