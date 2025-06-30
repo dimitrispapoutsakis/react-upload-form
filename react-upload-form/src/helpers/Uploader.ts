@@ -1,12 +1,16 @@
+import { TUploadStatus } from "@typings";
+
 class Uploader {
   private formData!: FormData;
   private xhr!: XMLHttpRequest;
   private progress: number = 0;
   private serverUrl: string = '';
   private headers: HeadersInit = {};
-  private onUploadFinished: () => void = () => {};
-  private setUploadProgress: (progress: number) => void = () => {};
+  private onUploadFinished: () => void = () => { };
+  private setUploadProgress: (progress: number) => void = () => { };
   protected fiveMinutes: number = 300000;
+  private uploadStatus: TUploadStatus = 'idle';
+  private uploadMsg: string = '';
 
   setServerUrl(serverUrl: string) {
     this.serverUrl = serverUrl;
@@ -29,6 +33,7 @@ class Uploader {
   }
 
   onProgress(progress: number) {
+    this.uploadStatus = 'uploading';
     this.xhr.upload.addEventListener('progress', (event) => {
       if (event.lengthComputable) {
         const progress = (event.loaded / event.total) * 100;
@@ -47,26 +52,32 @@ class Uploader {
       if (this.xhr.status >= 200 && this.xhr.status < 300) {
         try {
           const result = JSON.parse(this.xhr.responseText);
-          console.log('Upload successful:', result);
+          this.uploadStatus = 'succeeded';
           resolve(result);
         } catch (error) {
+          this.uploadStatus = 'failed';
           reject(new Error('Invalid response format'));
         }
       } else {
-        reject(new Error(`Upload failed: ${this.xhr.status} ${this.xhr.statusText}`));
+        this.uploadStatus = 'failed';
+        reject (new Error(`Upload failed: ${this.xhr.status} ${this.xhr.statusText}`));
       }
     });
   }
 
-  onError(reject: (error: Error) => void) {
+  onError(reject: (error: string) => void) {
     this.xhr.addEventListener('error', () => {
-      reject(new Error('Network error occurred'));
+      this.uploadStatus = 'failed';
+      this.uploadMsg = 'Network error occurred';
+      reject(this.uploadMsg);
     });
   }
 
-  onTimeout(reject: (error: Error) => void) {
+  onTimeout(reject: (error: string) => void) {
     this.xhr.addEventListener('timeout', () => {
-      reject(new Error('Upload timed out'));
+      this.uploadStatus = 'failed';
+      this.uploadMsg = 'Upload timed out';
+      reject(this.uploadMsg);
     });
   }
 
@@ -82,7 +93,7 @@ class Uploader {
 
         this.xhr.open('POST', this.serverUrl);
         this.xhr.timeout = this.fiveMinutes;
-        
+
         Object.entries(this.headers).forEach(([key, value]) => {
           this.xhr.setRequestHeader(key, value);
         });
@@ -90,8 +101,8 @@ class Uploader {
         this.xhr.send(this.formData);
       });
     } catch (error: any) {
-      console.error('Upload error:', error);
-      alert(`Upload failed: ${error.message}`);
+      this.uploadStatus = 'failed';
+      this.uploadMsg = error.message;
     }
   }
 }

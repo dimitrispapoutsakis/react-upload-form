@@ -47,3 +47,5 @@ export interface IRestProps {
 export type TMotionTransition = Pick<MotionProps, 'transition'>;
 
 export type TAnimation = IChildren & IRestProps & TMotionTransition;
+
+export type TUploadStatus = 'idle' | 'uploading' | 'succeeded' | 'failed';

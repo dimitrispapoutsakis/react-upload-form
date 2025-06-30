@@ -28,7 +28,11 @@ const UploadAction = ({ selectedFiles }: ISelectedFiles) => {
       }, 800);
     });
 
-    uploader.upload();
+    const uploadStatus = await uploader.upload();
+
+    setTimeout(() => {
+      alert(uploadStatus);
+    }, 1000);
   }
 
   return (
