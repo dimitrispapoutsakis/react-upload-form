@@ -32,7 +32,11 @@ class Uploader {
     this.setUploadProgress = setUploadProgress;
   }
 
-  onProgress(progress: number) {
+  getUploadStatus = () => this.uploadStatus;
+
+  getUploadMsg = () => this.uploadMsg;
+
+  onProgress = async (progress: number) => {
     this.uploadStatus = 'uploading';
     this.xhr.upload.addEventListener('progress', (event) => {
       if (event.lengthComputable) {
@@ -47,59 +51,57 @@ class Uploader {
     });
   }
 
-  onLoad(resolve: (result: any) => void, reject: (error: Error) => void) {
+  onLoad = async () => {
     this.xhr.addEventListener('load', () => {
       if (this.xhr.status >= 200 && this.xhr.status < 300) {
         try {
           const result = JSON.parse(this.xhr.responseText);
           this.uploadStatus = 'succeeded';
-          resolve(result);
+          return result;
         } catch (error) {
           this.uploadStatus = 'failed';
-          reject(new Error('Invalid response format'));
+          this.uploadMsg = 'Invalid response format';
         }
       } else {
         this.uploadStatus = 'failed';
-        reject (new Error(`Upload failed: ${this.xhr.status} ${this.xhr.statusText}`));
+        this.uploadMsg = `Upload failed: ${this.xhr.status} ${this.xhr.statusText}`;
       }
     });
   }
 
-  onError(reject: (error: string) => void) {
+  onError = async () => {
     this.xhr.addEventListener('error', () => {
       this.uploadStatus = 'failed';
       this.uploadMsg = 'Network error occurred';
-      reject(this.uploadMsg);
     });
   }
 
-  onTimeout(reject: (error: string) => void) {
+  onTimeout = async () => {
     this.xhr.addEventListener('timeout', () => {
       this.uploadStatus = 'failed';
       this.uploadMsg = 'Upload timed out';
-      reject(this.uploadMsg);
     });
   }
 
-  upload() {
+  upload = async () => {
     try {
-      return new Promise((resolve, reject) => {
-        this.xhr = new XMLHttpRequest();
+      this.xhr = new XMLHttpRequest();
 
-        this.onProgress(this.progress);
-        this.onLoad(resolve, reject);
-        this.onError(reject);
-        this.onTimeout(reject);
+      await this.onProgress(this.progress);
+      await this.onLoad();
+      await this.onError();
+      await this.onTimeout();
 
-        this.xhr.open('POST', this.serverUrl);
-        this.xhr.timeout = this.fiveMinutes;
+      this.xhr.open('POST', this.serverUrl);
+      this.xhr.timeout = this.fiveMinutes;
 
-        Object.entries(this.headers).forEach(([key, value]) => {
-          this.xhr.setRequestHeader(key, value);
-        });
-
-        this.xhr.send(this.formData);
+      Object.entries(this.headers).forEach(([key, value]) => {
+        this.xhr.setRequestHeader(key, value);
       });
+
+      this.xhr.send(this.formData);
+
+      return this.uploadStatus;
     } catch (error: any) {
       this.uploadStatus = 'failed';
       this.uploadMsg = error.message;
