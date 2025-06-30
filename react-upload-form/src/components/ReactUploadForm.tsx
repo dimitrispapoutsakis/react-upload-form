@@ -85,6 +85,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 			theme={theme}
 			gradientBg={gradientBg}
 			upload={upload}
+			rounded={rounded}
 		>
 			<StyledReactUploadForm
 				theme={theme}

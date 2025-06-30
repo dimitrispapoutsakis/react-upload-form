@@ -49,3 +49,9 @@ export type TMotionTransition = Pick<MotionProps, 'transition'>;
 export type TAnimation = IChildren & IRestProps & TMotionTransition;
 
 export type TUploadStatus = 'idle' | 'uploading' | 'succeeded' | 'failed';
+
+/* Misc... */
+export enum ELayoutLevel {
+    high = 1,
+    max = 2,
+}

@@ -7,10 +7,11 @@ class Uploader {
   private serverUrl: string = '';
   private headers: HeadersInit = {};
   private onUploadFinished: () => void = () => { };
-  private setUploadProgress: (progress: number) => void = () => { };
+  private uploadProgressFn: (progress: number) => void = () => { };
   protected fiveMinutes: number = 300000;
   private uploadStatus: TUploadStatus = 'idle';
   private uploadMsg: string = '';
+  private isUploadingFn: (isUploading: boolean) => void = () => { };
 
   setServerUrl(serverUrl: string) {
     this.serverUrl = serverUrl;
@@ -28,8 +29,12 @@ class Uploader {
     this.onUploadFinished = onUploadFinished;
   }
 
-  setSetUploadProgress(setUploadProgress: (progress: number) => void) {
-    this.setUploadProgress = setUploadProgress;
+  setUploadProgressFn(uploadProgressFn: (progress: number) => void) {
+    this.uploadProgressFn = uploadProgressFn;
+  }
+
+  setIsUploadingFn(isUploadingFn: (isUploading: boolean) => void) {
+    this.isUploadingFn = isUploadingFn;
   }
 
   getUploadStatus = () => this.uploadStatus;
@@ -42,10 +47,17 @@ class Uploader {
       if (event.lengthComputable) {
         const progress = (event.loaded / event.total) * 100;
         this.progress = progress;
-        this.setUploadProgress(progress);
+        this.uploadProgressFn(progress);
 
         if (progress === 100) {
-          this.onUploadFinished();
+          const finishDelay = this.getUploadStatus() === 'succeeded' ? 800 : 100;
+          setTimeout(() => {
+            if (this.getUploadStatus() === 'succeeded') {
+              this.isUploadingFn(false);
+              this.uploadProgressFn(0);
+            }
+            this.onUploadFinished();
+          }, finishDelay);
         }
       }
     });

@@ -16,11 +16,16 @@ export const silver2 = '#b9b9b9';
 export const mercury = '#e2e2e2';
 export const silverChalice = '#a7a7a7';
 
+/* Reds... */
+export const redBright = '#4f0000';
+export const redMonaLisa = '#FF9292';
+
 export const linearGradientDark = `linear-gradient(to left, ${darkEbonyClay}, ${darkBunker})`;
 export const linearGradientLight = `linear-gradient(to left, #fff, ${silver2})`;
 
 /* General Appearance... */
 export const borderRadius = '15px';
+export const borderRadiusSecondary= '5px';
 
 /* Animations... */
 export const bezierOne = 'cubic-bezier(0.01, 0.28, 0.76, 1.12)';

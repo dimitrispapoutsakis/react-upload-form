@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { IChildren, IUploadProp, TTheme } from '@typings';
+import { IChildren, IUploadProp, TTheme, TUploadStatus } from '@typings';
 
 interface IUseGlobal {
   theme: TTheme;
@@ -9,6 +9,11 @@ interface IUseGlobal {
   setIsUploading: (isUploading: boolean) => void;
   uploadProgress: number;
   setUploadProgress: (uploadProgress: number) => void;
+  uploadStatus: TUploadStatus;
+  setUploadStatus: (uploadStatus: TUploadStatus) => void;
+  uploadMsg: string;
+  setUploadMsg: (uploadMsg: string) => void;
+  rounded: boolean;
 }
 
 const GlobalContext = createContext<IUseGlobal | undefined>(undefined);
@@ -18,7 +23,9 @@ type TGlobalProvider = IChildren & IUseGlobal;
 export const GlobalProvider = (props: TGlobalProvider) => {
   const [ isUploading, setIsUploading ] = useState(false);
   const [ uploadProgress, setUploadProgress ] = useState(0);
-  const { children, theme, gradientBg, upload } = props;
+  const [ uploadStatus, setUploadStatus ] = useState<TUploadStatus>('idle');
+  const [ uploadMsg, setUploadMsg ] = useState<string>('');
+  const { children, theme, gradientBg, upload, rounded } = props;
   const value: IUseGlobal = {
     theme,
     gradientBg,
@@ -27,6 +34,11 @@ export const GlobalProvider = (props: TGlobalProvider) => {
     setIsUploading,
     uploadProgress,
     setUploadProgress,
+    uploadStatus,
+    setUploadStatus,
+    uploadMsg,
+    setUploadMsg,
+    rounded,
   }
 
   return (

@@ -1,6 +1,7 @@
 import { darkBunker } from "@constants/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { ELayoutLevel } from "@typings";
 
 export const StyledUploadScreen = styled.div`
   position: absolute;
@@ -22,14 +23,21 @@ export const StyledOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: ${ELayoutLevel.high};
 `;
 
 export const StyledLoadingText = styled.b`
-  z-index: 101;
+  z-index: ${ELayoutLevel.high};
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 3.5rem;
+`;
+
+export const StyledAlert = styled.div`
+  z-index: ${ELayoutLevel.max};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;

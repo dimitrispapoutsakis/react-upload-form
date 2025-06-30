@@ -6,7 +6,15 @@ import { ISelectedFiles } from "@typings";
 import Uploader from "@helpers/Uploader";
 
 const UploadAction = ({ selectedFiles }: ISelectedFiles) => {
-  const { theme, gradientBg, upload, setIsUploading, setUploadProgress } = useGlobal();
+  const { 
+    theme, 
+    gradientBg, 
+    upload, 
+    setIsUploading, 
+    setUploadProgress, 
+    setUploadStatus,
+    setUploadMsg,
+  } = useGlobal();
 
   const uploadFile = async () => {
     setIsUploading(true);
@@ -20,12 +28,11 @@ const UploadAction = ({ selectedFiles }: ISelectedFiles) => {
     uploader.setServerUrl(upload.serverUrl);
     uploader.setHeaders(upload.headers);
     uploader.setFormData(formData);
-    uploader.setSetUploadProgress(setUploadProgress);
+    uploader.setUploadProgressFn(setUploadProgress);
+    uploader.setIsUploadingFn(setIsUploading);
     uploader.setOnUploadFinished(() => {
-      setTimeout(() => {
-        setIsUploading(false);
-        setUploadProgress(0);
-      }, 800);
+      setUploadStatus(uploader.getUploadStatus());
+      setUploadMsg(uploader.getUploadMsg());
     });
 
     await uploader.upload();
