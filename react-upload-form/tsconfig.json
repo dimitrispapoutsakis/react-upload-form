@@ -17,7 +17,8 @@
 			"@scss/*": ["assets/scss/*"],
 			"@img/*": ["assets/img/*"],
 			"@typings": ["typings.ts"],
-			"@constants/*": ["constants/*"]
+			"@constants/*": ["constants/*"],
+			"@helpers/*": ["helpers/*"]
 		}
 	},
 	"include": ["src"]
