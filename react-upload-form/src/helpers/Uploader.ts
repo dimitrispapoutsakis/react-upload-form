@@ -1,11 +1,11 @@
 class Uploader {
-  private formData: FormData;
-  private xhr: XMLHttpRequest;
-  private progress: number;
-  private serverUrl: string;
-  private headers: HeadersInit;
-  private onUploadFinished: () => void;
-  private setUploadProgress: (progress: number) => void;
+  private formData!: FormData;
+  private xhr!: XMLHttpRequest;
+  private progress: number = 0;
+  private serverUrl: string = '';
+  private headers: HeadersInit = {};
+  private onUploadFinished: () => void = () => {};
+  private setUploadProgress: (progress: number) => void = () => {};
   protected fiveMinutes: number = 300000;
 
   setServerUrl(serverUrl: string) {
@@ -53,7 +53,7 @@ class Uploader {
           reject(new Error('Invalid response format'));
         }
       } else {
-        reject(new Error(`Upload failed: ${xhr.status} ${xhr.statusText}`));
+        reject(new Error(`Upload failed: ${this.xhr.status} ${this.xhr.statusText}`));
       }
     });
   }
