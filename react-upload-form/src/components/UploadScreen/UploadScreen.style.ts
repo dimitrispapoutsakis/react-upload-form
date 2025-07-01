@@ -32,13 +32,18 @@ export const StyledLoadingText = styled.b`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: fadeIn 1s ease;
+  animation: fadeIn 1s ease infinite;
   @keyframes fadeIn {
-    from {
+    0% {
       opacity: 0;
     }
-    to {
-      opacity: 1;
+
+    50% {
+      opacity: 0.5;
+    }
+
+    100% {
+      opacity: 0;
     }
   }
 `;
