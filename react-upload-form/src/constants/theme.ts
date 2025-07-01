@@ -23,7 +23,7 @@ export const redMonaLisa = '#FF9292';
 
 export const linearGradientDark = `linear-gradient(to left, ${darkEbonyClay}, ${darkBunker})`;
 export const linearGradientDarkSecondary = `linear-gradient(to left, ${darkEbonyClay}, ${darkPickledBluewood})`;
-export const linearGradientLight = `linear-gradient(to left, #fff, ${silver2})`;
+export const linearGradientLight = `linear-gradient(to left, #fff, ${silver})`;
 export const linearGradientLightSecondary = `linear-gradient(to left, #fff, ${silver2})`;
 
 /* General Appearance... */

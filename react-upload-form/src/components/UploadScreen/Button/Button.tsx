@@ -4,12 +4,11 @@ import { StyledButton } from './Button.style';
 import { useGlobal } from "@components/GlobalProvider";
 
 const Button = ({ children, ...rest }: IRestProps) => {
-  const { rounded, gradientBg, theme } = useGlobal();
+  const { rounded, theme } = useGlobal();
   
   return (
     <StyledButton 
       rounded={rounded} 
-      gradientBg={gradientBg} 
       theme={theme} 
       {...rest}
     >
