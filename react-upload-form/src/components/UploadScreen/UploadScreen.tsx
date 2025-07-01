@@ -6,13 +6,28 @@ import ErrorAlert from "./ErrorAlert/ErrorAlert";
 import Button from "./Button/Button";
 
 const UploadScreen = () => {
-  const { isUploading, setUploadProgress, uploadProgress, uploadStatus, uploadMsg, uploadFile } = useGlobal();
+  const { 
+    isUploading, 
+    setUploadProgress, 
+    uploadProgress, 
+    uploadStatus, 
+    uploadMsg, 
+    uploadFile, 
+    setUploadStatus,
+    setIsUploading
+  } = useGlobal();
   if (!isUploading) return null;
   const formattedUploadProgress = uploadProgress.toFixed(2);
 
   const onRetryClick = () => {
     setUploadProgress(0);
     uploadFile();
+  }
+
+  const onCloseClick = () => {
+    setUploadProgress(0);
+    setUploadStatus('idle');
+    setIsUploading(false);
   }
 
   return (
@@ -27,7 +42,7 @@ const UploadScreen = () => {
           <ErrorAlert text={uploadMsg} />
           <div css={ButtonContainerStyle}>
             <Button style={{ marginRight: '5px' }} onClick={onRetryClick}> Retry </Button>
-            <Button style={{ marginLeft: '5px' }}> Close </Button>
+            <Button style={{ marginLeft: '5px' }} onClick={onCloseClick}> Close </Button>
           </div>
         </>
       )}
