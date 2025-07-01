@@ -3,7 +3,7 @@ import { StyledLoadingText, StyledOverlay, StyledUploadScreen } from "./UploadSc
 import { useGlobal } from "@components/GlobalProvider";
 import { isUploadStatusFailed } from "@utils/upload.util";
 import ErrorAlert from "./ErrorAlert/ErrorAlert";
-import RetryButton from "./RetryButton/RetryButton";
+import Button from "./Button/Button";
 
 const UploadScreen = () => {
   const { isUploading, uploadProgress, uploadStatus, uploadMsg } = useGlobal();
@@ -20,9 +20,9 @@ const UploadScreen = () => {
       {isUploadStatusFailed(uploadStatus) && (
         <>
           <ErrorAlert text={uploadMsg} />
-          <RetryButton>
+          <Button>
             Retry
-          </RetryButton>
+          </Button>
         </>
       )}
     </StyledUploadScreen>

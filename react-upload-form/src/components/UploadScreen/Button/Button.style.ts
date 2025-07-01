@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ELayoutLevel } from "@typings";
 
-export const StyledRetryButton = styled.button`
+export const Button = styled.button`
   background-image: linear-gradient(to right, #6a5acd, #ff6347);
   color: white;
   padding: 10px 20px;
