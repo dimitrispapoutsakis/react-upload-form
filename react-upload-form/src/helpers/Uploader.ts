@@ -15,26 +15,32 @@ class Uploader {
 
   setServerUrl(serverUrl: string) {
     this.serverUrl = serverUrl;
+    return this;
   }
 
   setHeaders(headers: HeadersInit) {
     this.headers = headers;
+    return this;
   }
 
   setFormData(formData: FormData) {
     this.formData = formData;
+    return this;
   }
 
   setOnUploadFinished(onUploadFinished: () => void) {
     this.onUploadFinished = onUploadFinished;
+    return this;
   }
 
   setUploadProgressFn(uploadProgressFn: (progress: number) => void) {
     this.uploadProgressFn = uploadProgressFn;
+    return this;
   }
 
   setIsUploadingFn(isUploadingFn: (isUploading: boolean) => void) {
     this.isUploadingFn = isUploadingFn;
+    return this;
   }
 
   getUploadStatus = () => this.uploadStatus;

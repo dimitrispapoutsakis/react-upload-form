@@ -23,11 +23,6 @@ export interface IUploadProp {
     headers: HeadersInit;
 }
 
-export interface ISelectedFiles {
-    selectedFiles: File[];
-    setSelectedFiles: (selectedFiles: File[]) => void;
-}
-
 export interface IChildren {
     [key: string]: string;
 }

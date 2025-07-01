@@ -86,6 +86,8 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 			gradientBg={gradientBg}
 			upload={upload}
 			rounded={rounded}
+			selectedFiles={selectedFiles}
+			setSelectedFiles={setSelectedFiles}
 		>
 			<StyledReactUploadForm
 				theme={theme}
@@ -147,10 +149,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 
 				{hasFiles && (
 					<div style={{ marginTop: '15px' }}>
-						<Actions
-							selectedFiles={selectedFiles}
-							setSelectedFiles={setSelectedFiles}
-						/>
+						<Actions />
 					</div>
 				)}
 			</StyledReactUploadForm>

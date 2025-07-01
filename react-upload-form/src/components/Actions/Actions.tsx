@@ -1,22 +1,14 @@
-import { ISelectedFiles } from "@typings";
 import { ActionsStyle } from "./Actions.style";
 import UploadAction from "./UploadAction";
 import DiscardAction from "./DiscardAction";
 import BlurInAnimation from "@components/Animations/BlurInAnimation";
 
-const Actions = ({ selectedFiles, setSelectedFiles }: ISelectedFiles) => (
+const Actions = () => (
   <BlurInAnimation>
-  <div css={ActionsStyle}>
-    <UploadAction
-      selectedFiles={selectedFiles}
-      setSelectedFiles={setSelectedFiles}
-    />
-
-    <DiscardAction
-      selectedFiles={selectedFiles}
-      setSelectedFiles={setSelectedFiles}
-    />
-  </div>
+    <div css={ActionsStyle}>
+      <UploadAction />
+      <DiscardAction />
+    </div>
   </BlurInAnimation>
 );
 
