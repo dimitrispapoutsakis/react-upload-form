@@ -29,7 +29,7 @@ export interface ISelectedFiles {
 }
 
 export interface IChildren {
-    children: ReactNode;
+    [key: string]: string;
 }
 
 /* Theme... */

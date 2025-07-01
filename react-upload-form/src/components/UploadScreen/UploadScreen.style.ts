@@ -41,3 +41,14 @@ export const StyledAlert = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+
+export const ButtonContainerStyle = css`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: calc(50% - 80px);
+  left: 0;
+  box-sizing: border-box;
+  z-index: ${ELayoutLevel.high};
+`;

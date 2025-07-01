@@ -1,5 +1,5 @@
 import { TextGradientStyle } from "@components/ReactUploadForm.style";
-import { StyledLoadingText, StyledOverlay, StyledUploadScreen } from "./UploadScreen.style";
+import { ButtonContainerStyle, StyledLoadingText, StyledOverlay, StyledUploadScreen } from "./UploadScreen.style";
 import { useGlobal } from "@components/GlobalProvider";
 import { isUploadStatusFailed } from "@utils/upload.util";
 import ErrorAlert from "./ErrorAlert/ErrorAlert";
@@ -20,9 +20,10 @@ const UploadScreen = () => {
       {isUploadStatusFailed(uploadStatus) && (
         <>
           <ErrorAlert text={uploadMsg} />
-          <Button>
-            Retry
-          </Button>
+          <div id="test" css={ButtonContainerStyle}>
+            <Button style={{ marginRight: '5px' }}> Retry </Button>
+            <Button style={{ marginLeft: '5px' }}> Close </Button>
+          </div>
         </>
       )}
     </StyledUploadScreen>

@@ -15,13 +15,16 @@ export const silver = '#C9C9C9';
 export const silver2 = '#b9b9b9';
 export const mercury = '#e2e2e2';
 export const silverChalice = '#a7a7a7';
+export const grayMineShaft = '#333';
 
 /* Reds... */
 export const redBright = '#4f0000';
 export const redMonaLisa = '#FF9292';
 
 export const linearGradientDark = `linear-gradient(to left, ${darkEbonyClay}, ${darkBunker})`;
+export const linearGradientDarkSecondary = `linear-gradient(to left, ${darkEbonyClay}, ${darkPickledBluewood})`;
 export const linearGradientLight = `linear-gradient(to left, #fff, ${silver2})`;
+export const linearGradientLightSecondary = `linear-gradient(to left, #fff, ${silver2})`;
 
 /* General Appearance... */
 export const borderRadius = '15px';

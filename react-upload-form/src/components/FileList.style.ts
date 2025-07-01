@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { TTheme } from '@typings';
 import { isLightTheme } from '@utils/theme.util';
-import { silver2 } from 'constants/theme';
+import { grayMineShaft, silver2 } from 'constants/theme';
 
 export const FileListStyle = css`
     width: 100%;
@@ -17,7 +17,7 @@ export const StyledFileList = styled.div`
 
 export const StyledFileName = styled.div<{ theme: TTheme }>`
     font-weight: bold;
-    color: ${({ theme }) => isLightTheme(theme) ? '#333' : '#fff' };
+    color: ${({ theme }) => isLightTheme(theme) ? grayMineShaft : '#fff' };
 `
 
 export const StyledFileSize = styled.div<{ theme: TTheme }>`
