@@ -4,15 +4,16 @@ import { useGlobal } from "@components/GlobalProvider";
 import { isUploadStatusFailed } from "@utils/upload.util";
 import ErrorAlert from "./ErrorAlert/ErrorAlert";
 import Button from "./Button/Button";
+import FadeInAnimation from "@components/Animations/FadeInAnimation";
 
 const UploadScreen = () => {
-  const { 
-    isUploading, 
-    setUploadProgress, 
-    uploadProgress, 
-    uploadStatus, 
-    uploadMsg, 
-    uploadFile, 
+  const {
+    isUploading,
+    setUploadProgress,
+    uploadProgress,
+    uploadStatus,
+    uploadMsg,
+    uploadFile,
     setUploadStatus,
     setIsUploading
   } = useGlobal();
@@ -33,16 +34,22 @@ const UploadScreen = () => {
   return (
     <StyledUploadScreen>
       <StyledOverlay />
-      <StyledLoadingText style={{ fontSize: '3.5rem' }} css={TextGradientStyle}>
-        {formattedUploadProgress}%
-      </StyledLoadingText>
+      <FadeInAnimation>
+        <StyledLoadingText style={{ fontSize: '3.5rem' }} css={TextGradientStyle}>
+          {formattedUploadProgress}%
+        </StyledLoadingText>
+      </FadeInAnimation>
 
       {isUploadStatusFailed(uploadStatus) && (
         <>
           <ErrorAlert text={uploadMsg} />
           <div css={ButtonContainerStyle}>
-            <Button style={{ marginRight: '5px' }} onClick={onRetryClick}> Retry </Button>
-            <Button style={{ marginLeft: '5px' }} onClick={onCloseClick}> Close </Button>
+            <FadeInAnimation>
+              <Button style={{ marginRight: '5px' }} onClick={onRetryClick}> Retry </Button>
+            </FadeInAnimation>
+            <FadeInAnimation delay={0.10}>
+              <Button style={{ marginLeft: '5px' }} onClick={onCloseClick}> Close </Button>
+            </FadeInAnimation>
           </div>
         </>
       )}
