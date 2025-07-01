@@ -32,6 +32,15 @@ export const StyledLoadingText = styled.b`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  animation: fadeIn 1s ease;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const StyledAlert = styled.div`

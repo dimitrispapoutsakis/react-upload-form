@@ -34,11 +34,9 @@ const UploadScreen = () => {
   return (
     <StyledUploadScreen>
       <StyledOverlay />
-      <FadeInAnimation>
-        <StyledLoadingText style={{ fontSize: '3.5rem' }} css={TextGradientStyle}>
-          {formattedUploadProgress}%
-        </StyledLoadingText>
-      </FadeInAnimation>
+      <StyledLoadingText style={{ fontSize: '3.5rem' }} css={TextGradientStyle}>
+        {formattedUploadProgress}%
+      </StyledLoadingText>
 
       {isUploadStatusFailed(uploadStatus) && (
         <>
