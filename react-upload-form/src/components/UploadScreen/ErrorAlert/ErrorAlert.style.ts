@@ -14,4 +14,15 @@ export const StyledErrorAlert = styled.div<{ rounded: boolean }>`
   width: 100%;
   text-align: center;
   box-sizing: border-box;
+  animation: slideInUp 0.25s ease;
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 35%, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
 `;

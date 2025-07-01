@@ -18,7 +18,8 @@
 			"@img/*": ["assets/img/*"],
 			"@typings": ["typings.ts"],
 			"@constants/*": ["constants/*"],
-			"@helpers/*": ["helpers/*"]
+			"@helpers/*": ["helpers/*"],
+			"@animations/*": ["animations/*"]
 		}
 	},
 	"include": ["src"]
