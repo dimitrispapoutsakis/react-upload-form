@@ -147,11 +147,7 @@ export const ReactUploadForm = (props: IReactUploadForm) => {
 						/>
 					)}
 
-				{hasFiles && (
-					<div style={{ marginTop: '15px' }}>
-						<Actions />
-					</div>
-				)}
+				{hasFiles && <Actions />}
 			</StyledReactUploadForm>
 		</GlobalProvider >
 	)

@@ -6,6 +6,7 @@ import { grayMineShaft, silver2 } from 'constants/theme';
 
 export const FileListStyle = css`
     width: 100%;
+    flex: 1;
 `
 
 export const StyledFileList = styled.div`

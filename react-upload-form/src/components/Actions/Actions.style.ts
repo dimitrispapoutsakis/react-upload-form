@@ -4,11 +4,6 @@ import { TTheme } from '@typings';
 import { isLightTheme } from '@utils/theme.util';
 import { whiteAlto, darkBunker } from 'constants/theme';
 
-export const ActionsStyle = css`
-  display: flex;
-  align-self: flex-end;
-`
-
 export const StyledAction = styled.div<{ theme: TTheme, gradientBg: boolean }>`
   position: relative;
   border-radius: 50%;

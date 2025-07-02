@@ -1,15 +1,12 @@
-import { ActionsStyle } from "./Actions.style";
 import UploadAction from "./UploadAction";
 import DiscardAction from "./DiscardAction";
-import BlurInAnimation from "@components/Animations/BlurInAnimation";
+import SlideInUpAnimation from "@components/Animations/SlideInUpAnimation";
 
 const Actions = () => (
-  <BlurInAnimation>
-    <div css={ActionsStyle}>
-      <UploadAction />
-      <DiscardAction />
-    </div>
-  </BlurInAnimation>
+  <SlideInUpAnimation style={{ display: 'flex', marginTop: '25px' }}>
+    <UploadAction />
+    <DiscardAction />
+  </SlideInUpAnimation>
 );
 
 export default Actions;
