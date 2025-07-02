@@ -24,7 +24,7 @@ export interface IUploadProp {
 }
 
 export interface IChildren {
-    [key: string]: string;
+    children: ReactNode;
 }
 
 /* Theme... */

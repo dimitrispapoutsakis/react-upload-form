@@ -1,7 +1,7 @@
 import { TAnimation } from '@typings';
 import { motion } from 'framer-motion';
 
-import { bezierButterFramerM, durationDefault, slideInUpAnim, slideInUpInit } from '@constants/theme';
+import { durationDefault, slideInUpAnim, slideInUpInit } from '@constants/theme';
 
 const SlideInUpAnimation = ( { children, delay, ...rest }: TAnimation ) => (
   <motion.div
