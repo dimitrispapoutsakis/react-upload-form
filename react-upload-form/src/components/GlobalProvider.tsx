@@ -19,9 +19,18 @@ interface IUseGlobal {
   uploadFile: () => Promise<void>;
 }
 
+interface IGlobalProvider {
+  theme: TTheme;
+  gradientBg: boolean;
+  upload: IUploadProp;
+  rounded: boolean;
+  selectedFiles: File[];
+  setSelectedFiles: (selectedFiles: File[]) => void;
+}
+
 const GlobalContext = createContext<IUseGlobal | undefined>(undefined);
 
-type TGlobalProvider = IChildren & IUseGlobal;
+type TGlobalProvider = IChildren & IGlobalProvider;
 
 export const GlobalProvider = (props: TGlobalProvider) => {
   const [ uploadProgress, setUploadProgress ] = useState(0);
