@@ -1,23 +1,21 @@
 import { TextGradientStyle } from "@components/ReactUploadForm.style";
 import { ButtonContainerStyle, StyledLoadingText, StyledOverlay, StyledUploadScreen } from "./UploadScreen.style";
 import { useGlobal } from "@components/GlobalProvider";
-import { isUploadStatusFailed } from "@utils/upload.util";
+import { isUploadStatusFailed, isUploadStatusIdle, isUploadStatusUploading } from "@utils/upload.util";
 import ErrorAlert from "./ErrorAlert/ErrorAlert";
 import Button from "./Button/Button";
 import FadeInAnimation from "@components/Animations/FadeInAnimation";
 
 const UploadScreen = () => {
   const {
-    isUploading,
     setUploadProgress,
     uploadProgress,
     uploadStatus,
     uploadMsg,
     uploadFile,
     setUploadStatus,
-    setIsUploading
   } = useGlobal();
-  if (!isUploading) return null;
+  if (isUploadStatusIdle(uploadStatus)) return null;
   const formattedUploadProgress = uploadProgress.toFixed(2);
 
   const onRetryClick = () => {
@@ -28,13 +26,12 @@ const UploadScreen = () => {
   const onCloseClick = () => {
     setUploadProgress(0);
     setUploadStatus('idle');
-    setIsUploading(false);
   }
 
   return (
     <StyledUploadScreen>
       <StyledOverlay />
-      <StyledLoadingText style={{ fontSize: '3.5rem' }} css={TextGradientStyle}>
+      <StyledLoadingText uploadStatus={uploadStatus} style={{ fontSize: '3.5rem' }} css={TextGradientStyle}>
         {formattedUploadProgress}%
       </StyledLoadingText>
 
@@ -45,6 +42,7 @@ const UploadScreen = () => {
             <FadeInAnimation>
               <Button style={{ marginRight: '5px' }} onClick={onRetryClick}> Retry </Button>
             </FadeInAnimation>
+
             <FadeInAnimation delay={0.10}>
               <Button style={{ marginLeft: '5px' }} onClick={onCloseClick}> Close </Button>
             </FadeInAnimation>

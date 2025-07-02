@@ -1,13 +1,12 @@
 import { createContext, useCallback, useContext, useState } from 'react';
 import { IChildren, IUploadProp, TTheme, TUploadStatus } from '@typings';
 import Uploader from '@helpers/Uploader';
+import { StyledUploadScreen } from './UploadScreen/UploadScreen.style';
 
 interface IUseGlobal {
   theme: TTheme;
   gradientBg: boolean;
   upload: IUploadProp;
-  isUploading: boolean;
-  setIsUploading: (isUploading: boolean) => void;
   uploadProgress: number;
   setUploadProgress: (uploadProgress: number) => void;
   uploadStatus: TUploadStatus;
@@ -25,15 +24,13 @@ const GlobalContext = createContext<IUseGlobal | undefined>(undefined);
 type TGlobalProvider = IChildren & IUseGlobal;
 
 export const GlobalProvider = (props: TGlobalProvider) => {
-  const [ isUploading, setIsUploading ] = useState(false);
   const [ uploadProgress, setUploadProgress ] = useState(0);
   const [ uploadStatus, setUploadStatus ] = useState<TUploadStatus>('idle');
   const [ uploadMsg, setUploadMsg ] = useState<string>('');
   const { children, theme, gradientBg, upload, rounded, selectedFiles, setSelectedFiles } = props;
 
   const uploadFile = useCallback(async () => {
-    setIsUploading(true);
-
+    setUploadStatus('uploading');
     const formData = new FormData();
     for (const file of selectedFiles) {
       formData.append(upload.fileFieldName, file);
@@ -43,10 +40,9 @@ export const GlobalProvider = (props: TGlobalProvider) => {
     .setServerUrl(upload.serverUrl)
     .setHeaders(upload.headers)
     .setFormData(formData)
-    .setUploadProgressFn((progress) => setUploadProgress(progress))
-    .setIsUploadingFn(setIsUploading)
-    .setOnUploadFinished(() => {
-      setUploadStatus(uploader.getUploadStatus());
+    .onUploadProgress((progress) => setUploadProgress(progress))
+    .onUploadStatusChange((uploadStatus) => setUploadStatus(uploadStatus))
+    .onUploadFinished(() => {
       setUploadMsg(uploader.getUploadMsg());
     });
 
@@ -57,8 +53,6 @@ export const GlobalProvider = (props: TGlobalProvider) => {
     theme,
     gradientBg,
     upload,
-    isUploading,
-    setIsUploading,
     uploadProgress,
     setUploadProgress,
     uploadStatus,

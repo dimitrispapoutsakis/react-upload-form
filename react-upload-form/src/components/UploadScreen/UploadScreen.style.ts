@@ -1,7 +1,8 @@
 import { darkBunker } from "@constants/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { ELayoutLevel } from "@typings";
+import { ELayoutLevel, TUploadStatus } from "@typings";
+import { isUploadStatusUploading } from "@utils/upload.util";
 
 export const StyledUploadScreen = styled.div`
   position: absolute;
@@ -26,20 +27,20 @@ export const StyledOverlay = styled.div`
   z-index: ${ELayoutLevel.high};
 `;
 
-export const StyledLoadingText = styled.b`
+export const StyledLoadingText = styled.b<{ uploadStatus: TUploadStatus }>`
   z-index: ${ELayoutLevel.high};
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: fadeIn 1s ease infinite;
+  animation: ${({ uploadStatus }) => isUploadStatusUploading(uploadStatus) ? 'fadeIn 1s ease infinite' : 'none'};
   @keyframes fadeIn {
     0% {
       opacity: 0;
     }
 
     50% {
-      opacity: 0.5;
+      opacity: 1;
     }
 
     100% {
